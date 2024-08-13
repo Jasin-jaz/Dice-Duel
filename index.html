@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="player" id="player-1">
+            <h3>PLAYER 1</h3>
+            <div class="fading-text" id="fading-text-1"></div>
+            <p><span id="player-1-score">0</span></p>
+        </div>
+        <div class="dice-container">
+            <div class="dice">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+                <div class="face right"></div>
+                <div class="face left"></div>
+            </div>
+            <button class="roll">
+                <h2>ROLL</h2>
+            </button>
+            <button class="hold">
+                <h2>HOLD</h2>
+            </button>
+        </div>
+        <div class="player" id="player-2">
+            <h3>PLAYER 2</h3>
+            <div class="fading-text" id="fading-text-2"></div>
+            <p><span id="player-2-score">0</span></p>
+        </div>
+    </div>
+    
+    <!-- Modal for displaying winner -->
+    <div id="winner-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="winner-message"></h2>
+            <button id="new-game-btn">Play New Game</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
