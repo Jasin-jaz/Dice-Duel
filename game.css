@@ -12,6 +12,7 @@ body {
     align-items: center;
     min-height: 100vh;
     /* background-image: url('s'); */
+    background-image: linear-gradient(white,grey);
     background-size: cover;
     background-position: center;
 }
@@ -172,7 +173,7 @@ body {
 
 .roll:hover {
     color: #fff;
-    background: rgb(17, 0, 78);
+    background: #555;
 }
 
 .hold {
@@ -191,7 +192,7 @@ body {
 
 .hold:hover {
     color: #fff;
-    background: rgb(17, 0, 78);
+    background: #555;
 }
 
 /* Modal styles */
@@ -218,7 +219,7 @@ body {
 }
 
 #new-game-btn {
-    background-color: rgb(17, 0, 78);
+    background-color: rgb(0, 0, 0);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -260,4 +261,49 @@ body {
     background-color: #555;
 }
 
+/* Particle styles */
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    animation: particle-animation 2s ease-out forwards;
+}
 
+@keyframes particle-animation {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+
+/* Media query for screens 850px or smaller */
+@media screen and (max-width: 850px) {
+    .container {
+        flex-direction: column; /* Stack players vertically */
+        width: 100%; /* Make the container take up full width */
+        padding: 20px; /* Reduce padding */
+    }
+
+    .player {
+        width: 100%; /* Make each player take up full width */
+        margin-bottom: 20px; /* Add space between players */
+    }
+
+    .dice-container {
+        margin: 20px 0; /* Add space between the dice and players */
+    }
+
+    .roll, .hold {
+        max-width: 100%; /* Buttons take full width */
+        width: 100%;
+    }
+}

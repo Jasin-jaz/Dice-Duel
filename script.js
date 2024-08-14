@@ -15,6 +15,8 @@ const modal = document.getElementById('winner-modal');
 const winnerMessage = document.getElementById('winner-message');
 const newGameBtn = document.getElementById('new-game-btn');
 
+const rollSound = new Audio('sound.mp3');
+
 const randomDice = () => {
     const random = Math.floor(Math.random() * 10);
     if (random >= 1 && random <= 6) {
@@ -26,6 +28,9 @@ const randomDice = () => {
 
 const rollDice = (random) => {
     dice.style.animation = 'rolling 3s';
+
+    // Play the rolling sound
+    rollSound.play();
 
     setTimeout(() => {
         // Set the die face according to the rolled number
@@ -45,6 +50,10 @@ const rollDice = (random) => {
             default: break;
         }
         dice.style.animation = 'none';
+
+        // Stop the rolling sound after animation
+        rollSound.pause();
+        rollSound.currentTime = 0;
 
         // Get the corresponding fading text element after rolling ends
         const fadingTextEl = currentPlayer === 1 ? 
@@ -85,22 +94,47 @@ const rollDice = (random) => {
         // Check if there is a winner
         checkWinner();
 
-    }, 4050); // 4050ms matches the duration of the rolling animation
+    }, 3050); // Adjusted to match the duration of the rolling animation
 }
 
 // Function to check if any player has won
 const checkWinner = () => {
     if (player1Score >= 20) {
-        showModal('PLAYER 1 WINS!');
+        showWinner(1);
     } else if (player2Score >= 20) {
-        showModal('PLAYER 2 WINS!');
+        showWinner(2);
     }
 }
 
-// Function to display the modal
-const showModal = (message) => {
-    winnerMessage.textContent = message;
+// Function to display the winner modal and create particle effects
+const showWinner = (player) => {
+    winnerMessage.textContent = `PLAYER ${player} WINS!`;
     modal.style.display = 'block';
+
+    // Create particle effects when the modal appears
+    createParticles();
+}
+
+const createParticles = () => {
+    const particleCount = 100; // Number of particles
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+
+        // Randomize positions and directions for the particles
+        particle.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+        particle.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+
+        modal.appendChild(particle);
+
+        // Remove particle after animation completes
+        particle.addEventListener('animationend', () => {
+            particle.remove();
+        });
+    }
 }
 
 // Function to hide the modal
