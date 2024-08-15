@@ -15,8 +15,9 @@ const modal = document.getElementById('winner-modal');
 const winnerMessage = document.getElementById('winner-message');
 const newGameBtn = document.getElementById('new-game-btn');
 
-const rollSound = new Audio('C:/Users/Jasin/Desktop/DiceDuel/Sounds/roll.wav');
-const winSound = new Audio('C:/Users/Jasin/Desktop/DiceDuel/Sounds/win.wav'); // Add this line
+// Select audio elements from the DOM
+const rollSound = document.getElementById('roll-sound');
+const winSound = document.getElementById('win-sound');
 
 const randomDice = () => {
     const random = Math.floor(Math.random() * 10);
@@ -102,8 +103,6 @@ const rollDice = (random) => {
 
     }, 3050); // Adjusted to match the duration of the rolling animation
 }
-
-
 
 // Function to check if any player has won
 const checkWinner = () => {
