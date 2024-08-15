@@ -12,7 +12,7 @@ body {
     align-items: center;
     min-height: 100vh;
     /* background-image: url('s'); */
-    background-image: linear-gradient(white,grey);
+    background-image: linear-gradient(rgb(196, 196, 196));
     background-size: cover;
     background-position: center;
 }

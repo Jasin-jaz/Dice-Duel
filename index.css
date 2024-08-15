@@ -24,7 +24,7 @@ body {
 }
 
 .dice-left {
-    background-image: url('Home.png'); /* Replace with actual dice image URL */
+    background-image: url('Images/Home.png'); /* Replace with actual dice image URL */
 }
 .dice-right{
     margin-top: -80px;
