@@ -21,12 +21,12 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 800px;
-    background: #eee;
+    background: #d4d4d4;
     padding: 40px;
     box-shadow: rgba(0,0,0,0.1);
 }
 .player {
-    background-color: #aaaaaa;
+    background-color: #929292;
     padding: 20px;
     margin: 10px;
     width: 150px;

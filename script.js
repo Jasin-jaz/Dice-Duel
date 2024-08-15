@@ -15,7 +15,8 @@ const modal = document.getElementById('winner-modal');
 const winnerMessage = document.getElementById('winner-message');
 const newGameBtn = document.getElementById('new-game-btn');
 
-const rollSound = new Audio('sound.mp3');
+const rollSound = new Audio('C:/Users/Jasin/Desktop/DiceDuel/Sounds/roll.wav');
+const winSound = new Audio('C:/Users/Jasin/Desktop/DiceDuel/Sounds/win.wav'); // Add this line
 
 const randomDice = () => {
     const random = Math.floor(Math.random() * 10);
@@ -67,7 +68,6 @@ const rollDice = (random) => {
             // If the roll is 1, subtract 5 points and make the text red
             textColorClass = 'red';
             scoreChange = -5;
-
         } else {
             // For any other roll, add the rolled number to the score
             textColorClass = 'green';
@@ -77,7 +77,7 @@ const rollDice = (random) => {
         fadingTextEl.textContent = `${scoreChange > 0 ? '+' : ''}${scoreChange}`;
         fadingTextEl.classList.add('show-fading-text', textColorClass);
 
-        // Update the score for the current player
+        // Update the score for the current player only
         if (currentPlayer === 1) {
             player1Score += scoreChange;
             player1ScoreEl.textContent = player1Score;
@@ -94,8 +94,16 @@ const rollDice = (random) => {
         // Check if there is a winner
         checkWinner();
 
+        // Switch turns if the rolled number is 1
+        if (random === 1) {
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            updatePlayerStyles(); // Update player styles after switching turns
+        }
+
     }, 3050); // Adjusted to match the duration of the rolling animation
 }
+
+
 
 // Function to check if any player has won
 const checkWinner = () => {
@@ -110,6 +118,9 @@ const checkWinner = () => {
 const showWinner = (player) => {
     winnerMessage.textContent = `PLAYER ${player} WINS!`;
     modal.style.display = 'block';
+
+    // Play the win sound
+    winSound.play();
 
     // Create particle effects when the modal appears
     createParticles();

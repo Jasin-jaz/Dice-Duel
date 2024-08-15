@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dice Duel</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="index.css"> <!-- Add a separate stylesheet for home page styles -->
 </head>
 <body>
@@ -22,9 +21,18 @@
         </div>
     </div>
 
+    <!-- Add the audio element with a .wav file -->
+    <audio id="click-sound" src="Sounds/click.wav"></audio> <!-- Ensure the path is correct -->
+
     <script>
         document.querySelector('.play-button').addEventListener('click', () => {
-            window.location.href = 'Game/game.html'; // Redirect to game page
+            // Play the click sound
+            document.getElementById('click-sound').play();
+
+            // Delay the redirection to allow the sound to play
+            setTimeout(() => {
+                window.location.href = 'Game/game.html';
+            }, 300); // Adjust the delay time (in milliseconds) as needed
         });
     </script>
 </body>
